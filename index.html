@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<title>热门解析-优酷/爱奇艺/腾讯视频解析在线播放</title>
+<meta name="keywords" content="免费视频会员,免费优酷会员,免费爱奇艺会员,免费腾讯视频会员,会员账号共享,视频解析,视频在线解析,优酷解析,爱奇艺解析,腾讯视频解析,优酷VIP解析,爱奇艺VIP解析,腾讯视频VIP解析,超前点播">
+<meta name="description" content="优酷、爱奇艺、腾讯视频、哔哩哔哩、芒果TV和搜狐视频等全网最新电视剧、电影和综艺节目高清播放，在线观看所有视频。">
+
+<!--浏览器ICO-->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="bookmark" href="favicon.ico" />
+
+<!-- 引入样式 -->
+<link rel="stylesheet" type="text/css" href="static/css/index.css">
+<!-- 引入组件库 -->
+<script type="text/javascript" src="static/js/vue.js"></script>
+<script type="text/javascript" src="static/js/index.js"></script>
+
+<style>
+#app{font-family: "Microsoft YaHei"}
+
+@media screen and (max-width: 768px){
+#app{margin-left: 5px !important; margin-right: 5px !important;}
+#wap{display: none;}
+iframe{height: 200px !important;}
+.el-select{width: 100% !important;}
+.el-input{width: 100% !important; margin-top: 10px;}
+.el-button{width: 100% !important; margin-top: 10px;}
+}
+</style>
+
+</head>
+<body>
+
+<div id="app" style="margin-left: 150px; margin-right: 150px; margin-bottom: 25px;">
+<el-backtop></el-backtop>
+<div class="header" style="margin: 5px 0;">
+<a href="/v"><el-image style="width: 120px;" src="static/images/logo.png"></el-image></a>
+<el-link style="font-size: 15px; float: right;" type="info" href="https://resoumen.com" target="_blank">热搜导航</el-link>
+<el-link style="font-size: 15px; font-weight: bold; float: right; margin-right: 25px;" type="danger" href="https://a.app.qq.com/o/simple.jsp?pkgname=com.miaohui.xin" target="_blank">优惠券APP</el-link>
+<el-link id="wap" style="font-size: 15px; float: right; margin-right: 25px;" type="info" href="https://jq.qq.com/?_wv=1027&k=1QJ5Biiw" target="_blank">交流QQ群</el-link>
+</div>
+<div style="margin: 5px 0; height: 1px; background-color: #f0f0f0;"></div>
+
+<div class="tip" style="margin: 10px auto;">
+	<template>
+      <el-alert
+      title="本站不提供、不存储、不传播任何视频资源，一切资源来源于互联网开源接口，仅供测试和学习交流，如有违规请联系我们"
+      type="error"
+      center
+	  :closable="false">
+      </el-alert>
+	 </template>
+</div>
+	 
+<div class="main" style="margin: 10px 0;">
+
+     <iframe id="playbox" style="background-color: #ecf5ff; width:100%; height: 425px; border-radius: 5px;" allowtransparency="true" allowfullscreen="true" allowtransparency="true" frameborder="0" scrolling="no">
+	 </iframe>
+
+	<div class="jx" style="margin: 10px 0px;">
+    <template>
+    <el-select style="width: 15%;" v-model="value" placeholder="选择解析线路">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+    </el-select>
+    </template>
+
+	<el-input
+	  style="width: 60%;"
+	  prefix-icon="el-icon-paperclip"
+      placeholder="输入视频链接，点击解析播放，支持优酷、爱奇艺和腾讯视频等平台测试"
+      v-model="input"
+      clearable
+	  id="url">
+    </el-input>
+    
+	<el-button style="width: 11%;" type="primary" @click="play">解析播放</el-button>
+	
+    <el-button id="wap" style="width: 11%; float: right;" type="warning" type="text" @click="centerDialogVisible = true">手机播放</el-button>
+	    <el-dialog
+           title="手机扫码观看"
+           :visible.sync="centerDialogVisible"
+           width="20%"
+           center>
+        <span><el-image src="static/images/ewm.png"></el-image></span>
+		<span slot="footer" class="dialog-footer">
+           <el-button type="warning" @click="centerDialogVisible = false">关 闭</el-button>
+        </span>
+        </el-dialog>
+	</div>
+	
+	<div class="tip" style="margin: 10px 0px;">
+	<template>
+      <el-alert
+      title="选择解析线路，输入视频链接，点击解析播放；如果不能正常播放，可以切换解析线路。部分手机线路播放视频可能自带广告，请勿相信！"
+      type="success"
+      center
+      show-icon>
+      </el-alert>
+	 </template>
+	 </div>
+	 
+	<div class="gg" style="margin: 10px 0; text-align: center;">
+	      <a href="http://miaohui.xin" target="_blank"><el-image src="static/images/gg.png"></el-image></a>
+	</div>
+	
+	<div class="tvlogo" style="margin: 20px 0px; text-align: center">
+	<p style="margin-bottom:10px; color:#555555; font-size:16px;">支持平台</p>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/youku.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/iqiyi.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/vqq.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/bilibili.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/mgtv.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/pptv.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/le.png"></el-image>
+		<el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/sohu.png"></el-image>
+        <el-image style="width:85px; margin: 8px;" src="static/images/tvlogo/kankan.png"></el-image>
+	</div>
+
+</div>
+</div>
+
+
+<!--网站统计-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?94f612415ce86a4df7206785efb52133";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</body>
+
+<script>
+new Vue({
+    data() {
+      return {
+	    input: '',
+		reward: false,
+        centerDialogVisible: false,
+        options: [{
+          value: 'https://api.sigujx.com/?url=',
+          label: '推荐线路'
+        }, 
+		{
+          value: 'https://www.91jxs.com/jiexi/?url=',
+          label: '开源线路1'
+        }, 
+		{
+          value: 'https://jiexi.380k.com/?url=',
+          label: '开源线路2'
+        }, 
+		{
+          value: 'https://jx.618g.com/?url=',
+          label: '开源线路3'
+        }, 
+		{
+          value: 'https://www.xymav.com/?url=',
+          label: '备用线路'
+        }],
+        value: 'https://api.sigujx.com/?url='
+      }
+    },
+	mounted() {
+       console.log(this.value);
+    },
+	methods: {
+      play() {
+	  var urlv = document.getElementById("url").value;
+	    if(urlv == "") {
+          this.$message.error({
+          message: '视频链接不能为空，否则无法解析播放',
+          center: true
+        });
+		}
+		else {
+			playbox.src=this.value + urlv;
+	    }
+      }
+    },
+}).$mount('#app')
+</script>
+
+
+</html>
